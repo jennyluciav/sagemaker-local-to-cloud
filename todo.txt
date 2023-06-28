@@ -1,0 +1,9 @@
+- Create a readme file: Purpose of this repo is to showcase how to run sagemaker training and inference in a local environment (Jenny)
+- Create an example using the Sagemaker training toolkit (https://github.com/aws/sagemaker-training-toolkit) and Sagemaker inference toolkit (https://github.com/aws/sagemaker-inference-toolkit) (Jonah)
+- First iteration of this project has been done using: https://aws.amazon.com/blogs/machine-learning/use-the-amazon-sagemaker-local-mode-to-train-on-your-notebook-instance/ (Jenny)
+- Second iteration (for training only): https://docs.aws.amazon.com/sagemaker/latest/dg/train-remote-decorator.html
+- Future improvements:
+    - https://docs.aws.amazon.com/sagemaker/latest/dg/pipelines-local-mode.html
+- Show how to create an IAM role, and aws cli profile (Jenny)
+- Comment the notebook (Jenny)
+- Comment how to create a local virtual environment (poetry, virtualenv, pyenv) (Jenny)
