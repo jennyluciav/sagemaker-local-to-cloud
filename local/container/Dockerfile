@@ -2,8 +2,10 @@
 # This is a Python 3 image that uses the nginx, gunicorn, flask stack
 # for serving inferences in a stable way.
 
-FROM python:3.9-slim-buster
+FROM python:3.9
 
+# Jonah insertion 1
+RUN pip install sagemaker-training
 
 RUN apt-get -y update && apt-get install -y --no-install-recommends \
          wget \
