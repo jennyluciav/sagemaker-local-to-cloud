@@ -1,0 +1,34 @@
+# Build an image that can do training and inference in SageMaker
+# This is a Python 3 image that uses the nginx, gunicorn, flask stack
+# for serving inferences in a stable way.
+
+FROM python:3.9-slim
+
+# Jonah insertion 1
+RUN pip install sagemaker-training
+
+RUN apt-get -y update && apt-get install -y --no-install-recommends \
+         wget \
+         nginx \
+         ca-certificates
+
+RUN pip install pandas flask gunicorn causalnex
+
+COPY causal_nex/train.py /opt/ml/code/train.py
+
+
+# Set some environment variables. PYTHONUNBUFFERED keeps Python from buffering our standard
+# output stream, which means that logs can be delivered to the user quickly. PYTHONDONTWRITEBYTECODE
+# keeps Python from writing the .pyc files which are unnecessary in this case. We also update
+# PATH so that the train and serve programs are found when the container is invoked.
+
+ENV SAGEMAKER_PROGRAM train.py
+
+ENV PYTHONUNBUFFERED=TRUE
+ENV PYTHONDONTWRITEBYTECODE=TRUE
+ENV PATH="/opt/program:${PATH}"
+
+ADD causal_nex /opt/program
+COPY causal_nex /opt/program
+WORKDIR /opt/program
+ENTRYPOINT ["python3"]
